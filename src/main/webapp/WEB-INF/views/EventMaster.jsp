@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 	</head>
@@ -14,12 +15,32 @@
 				<td>Event Date</td><td><input type="text"  /></td>
 			</tr>
 			<tr>
-				<td>Max Tickets Per User</td><td><input type="text"  /></td>
+				<td>Max Tickets Per User</td><td><input type="text" value="10"  /></td>
 			</tr>
 			<tr>
-				<td>Price Per Ticket</td><td><input type="text"  /></td>
+				<td>Price Per Ticket</td><td><input type="text" value="10"  /></td>
+			</tr>
+			<tr>
+				<td>Status</td><td><select>
+									<option>Started</option>
+									<option>Not Started</option>
+									<option>Completed</option>
+									</select></td>
 			</tr>
 			 
+		</table>
+		
+		<hr/>
+		<table>
+			<tr>
+				<th>Event Name</th>
+				<th>Event Date</th>
+				<th>No. of Tickets Per Person</th>
+				<th>Price Per Ticket</th>
+				<th>No. of Ticket sold</th>
+				 <th>No. of Users</th>
+				 <th>Event Status</th>
+			</tr>
 		</table>
 	</body>
 </html>
