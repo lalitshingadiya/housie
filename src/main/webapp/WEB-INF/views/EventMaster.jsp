@@ -42,5 +42,6 @@
 				 <th>Event Status</th>
 			</tr>
 		</table>
+		
 	</body>
 </html>

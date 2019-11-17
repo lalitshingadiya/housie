@@ -1,10 +1,12 @@
-package com.game.housie.model;
+package com.game.housie.entity;
+
+import java.io.Serializable;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
     private Long id;
     private String username;
     private String password;

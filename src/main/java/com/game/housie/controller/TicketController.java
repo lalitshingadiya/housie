@@ -19,7 +19,11 @@ public class TicketController {
     public static final Logger logger = LoggerFactory.getLogger(TicketController.class);
 
 
-
+	@GetMapping("/sample")
+	public String saveEvent() {
+		return "sample";
+	}
+	
     @Autowired
     @Qualifier("ticketServiceImpl")
     private TicketService ticketService;

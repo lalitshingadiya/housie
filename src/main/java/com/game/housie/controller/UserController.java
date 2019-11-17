@@ -1,7 +1,7 @@
 package com.game.housie.controller;
 import com.game.housie.dao.RoleRepository;
-import com.game.housie.model.Role;
-import com.game.housie.model.User;
+import com.game.housie.entity.Role;
+import com.game.housie.entity.User;
 import com.game.housie.service.SecurityService;
 import com.game.housie.service.UserService;
 import com.game.housie.validator.UserValidator;

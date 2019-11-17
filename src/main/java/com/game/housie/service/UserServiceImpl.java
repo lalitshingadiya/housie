@@ -2,8 +2,9 @@ package com.game.housie.service;
 
 import com.game.housie.dao.RoleRepository;
 import com.game.housie.dao.UserRepository;
-import com.game.housie.model.Role;
-import com.game.housie.model.User;
+import com.game.housie.entity.Role;
+import com.game.housie.entity.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

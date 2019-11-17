@@ -1,7 +1,7 @@
 package com.game.housie.service;
 
 
-import com.game.housie.model.User;
+import com.game.housie.entity.User;
 
 public interface UserService {
     void save(User user);

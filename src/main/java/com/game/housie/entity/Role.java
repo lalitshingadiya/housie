@@ -1,4 +1,4 @@
-package com.game.housie.model;
+package com.game.housie.entity;
 
 import javax.persistence.*;
 import java.util.List;

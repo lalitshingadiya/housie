@@ -1,6 +1,6 @@
 package com.game.housie.validator;
 
-import com.game.housie.model.User;
+import com.game.housie.entity.User;
 import com.game.housie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

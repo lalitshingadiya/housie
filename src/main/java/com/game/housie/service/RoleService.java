@@ -1,7 +1,6 @@
 package com.game.housie.service;
 
-import com.game.housie.model.Role;
-import com.game.housie.model.User;
+import com.game.housie.entity.Role;
 
 import java.util.Set;
 
