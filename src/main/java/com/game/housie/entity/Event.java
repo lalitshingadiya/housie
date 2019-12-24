@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -22,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name="eventmaster")
-@Data
 public class Event implements Serializable {
 
 	 	
@@ -38,7 +40,7 @@ public class Event implements Serializable {
 		@NotNull
 		@Column(name="name",unique = true)
 		String name;
-		
+
 	 	@Column(name = "eventdate")
 	 	Date dtEventDate;
 	 	
@@ -51,16 +53,31 @@ public class Event implements Serializable {
 	 	@Column(name="status")
 	 	String status;
 	 
-	 	@Column(name="createdby")
-	 	int createdBy;
+	 //	@Column(name="createdby")
+	 //	int createdBy;
 	 	
 	 	@Column(name="createddate")
 	 	Date createdDate;
 	 	
-	 	
+
 	 	@OneToOne(fetch = FetchType.LAZY, optional = false)
 	    @JoinColumn(name = "createdby", nullable = false)
 	    private User user;
 
+//	public int getnEventId() {
+//		return nEventId;
+//	}
+//
+//	public void setnEventId(int nEventId) {
+//		this.nEventId = nEventId;
+//	}
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 }
 
