@@ -1,9 +1,12 @@
 package com.game.housie.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.CustomScopeConfigurer;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.support.SimpleThreadScope;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,6 +20,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 @Configuration()
 @EnableWebSecurity
+
     public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -37,7 +41,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
     	return new UrlAuthenticationSuccessHandler();
     }
-    
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,8 +50,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .usernameParameter("username1")
-                .passwordParameter("password1")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .loginPage("/login")
                 .successHandler(myAuthenticationSuccessHandler())
                 .permitAll()
@@ -56,12 +59,10 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
                 .logout()
                 .permitAll();
     }
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(bCryptPasswordEncoder());
     }
-
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources/**");
@@ -72,6 +73,5 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
 
 }

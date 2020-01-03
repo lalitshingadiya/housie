@@ -8,4 +8,6 @@ import com.game.housie.entity.Event;
 public interface EventService {
 	
 	List<EventDTO> findAllEvents();
+
+	public int save(EventDTO e);
 }

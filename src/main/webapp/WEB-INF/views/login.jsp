@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -35,9 +37,9 @@
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <input name="username1" type="text" class="form-control" placeholder="Username"
+            <input name="username" type="text" class="form-control" placeholder="Username"
                    autofocus="true"/>
-            <input name="password1" type="password" class="form-control" placeholder="Password"/>
+            <input name="password" type="password" class="form-control" placeholder="Password"/>
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 

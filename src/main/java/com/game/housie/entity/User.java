@@ -27,8 +27,6 @@ public class User implements Serializable {
     private int empcode;
 
 
-
-
     @Column(name = "firstname")
     private String firstname;
 

@@ -5,6 +5,7 @@ import com.game.housie.dao.UserRepository;
 import com.game.housie.entity.Role;
 import com.game.housie.entity.User;
 
+import com.game.housie.model.MediUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -45,18 +46,22 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
+        MediUser mediUser = null;
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         Role r=roleRepository.findById(Long.parseLong(user.getRoles())).orElse(null);
         System.out.println("--"+r.getName()+"---");
-        /*for (Role role : roleRepository.findAll()){
-        	if(String.valueOf(role.getId()).equals(user.getRoles()))
-        		grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-        }*/
-    	grantedAuthorities.add(new SimpleGrantedAuthority(r.getName()));
 
+
+    	grantedAuthorities.add(new SimpleGrantedAuthority(r.getName()));
+    if(user!=null) {
+        mediUser = new MediUser(username,   user.getPassword(), user.getId(),grantedAuthorities);
+    }else{
+        mediUser = new MediUser(username,   "NA", (long) 0,null);
+    }
         
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+       // return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+        return mediUser;
     }
     
 }

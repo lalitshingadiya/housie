@@ -7,12 +7,15 @@ import com.game.housie.service.UserService;
 import com.game.housie.validator.UserValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,21 +26,18 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
     @Autowired
     private UserService userService;
-
     @Autowired
     private SecurityService securityService;
-
     @Autowired
     private UserValidator userValidator;
-
     @Autowired
     RoleRepository roleRepository;
 
-    /*@ModelAttribute("roleList")
-    public List<Role> getRoleList() {
-        return roleRepository.findAll();
-    }*/
 
+    @ModelAttribute("user")
+    public User setUpUserForm() {
+        return new User();
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -58,7 +58,7 @@ public class UserController {
             return "registration";
         }
 
-            userService.save(userForm);
+        userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
@@ -72,7 +72,6 @@ public class UserController {
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
-
         return "login";
     }
  
@@ -85,4 +84,14 @@ public class UserController {
     public String adminPage(Model model) {
         return "admin";
     }
+
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody public String currentUserName(Authentication authentication) {
+        Object principal= authentication.getPrincipal();
+        if(principal instanceof UserDetails){
+            String username = ((UserDetails)principal).getUsername();
+        }
+        return authentication.getName(); }
+
+
 }

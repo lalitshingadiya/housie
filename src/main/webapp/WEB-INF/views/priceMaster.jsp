@@ -1,8 +1,11 @@
+<%@ include file="nav.html" %>
 <html>
 	<head>
 	</head>
 	<body>
+
 		<h2>Price Configuration</h2>
+
 		<table>
 			<tr>
 				<th>Fields</th><th>-</th>

@@ -1,83 +1,45 @@
 package com.game.housie.entity;
 
+import lombok.Data;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.Data;
 
 @Data
 @Entity
 @Table(name="eventmaster")
 public class Event implements Serializable {
 
-	 	
 	private static final long serialVersionUID = 1L;
+	@Id
+	@Column(name="eid",updatable=false,nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-		@Id
-	    @Column(name="eid",updatable=false,nullable=false)
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    int nEventId;
+	int eventId;
+	@NotNull
+	@Column(name="name",unique = true)
+	String name;
+	@Column(name = "eventdate")
+	Date eventDate;
+	@Column(name="maxtickets")
+	int noOfTickets;
+	@Column(name="priceperticket")
+	int pricePerTicket;
+	@Column(name="soldtickets")
+	int soldTickets;
+	@Column(name="noofusers")
+	int noOfUsers;
+	@Column(name="status")
+	String status;
+	@Column(name="createddate")
+	Date createdDate;
 
-		@NotNull
-		@Column(name="name",unique = true)
-		String name;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "createdby", nullable = false)
+	private User user;
 
-	 	@Column(name = "eventdate")
-	 	Date dtEventDate;
-	 	
-	 	@Column(name="maxtickets")
-		int nNoOfTickets;
-	 
-	 	@Column(name="priceperticket")
-	 	int nPricePerTicket;
-	 	
-	 	@Column(name="status")
-	 	String status;
-	 
-	 //	@Column(name="createdby")
-	 //	int createdBy;
-	 	
-	 	@Column(name="createddate")
-	 	Date createdDate;
-	 	
 
-	 	@OneToOne(fetch = FetchType.LAZY, optional = false)
-	    @JoinColumn(name = "createdby", nullable = false)
-	    private User user;
-
-//	public int getnEventId() {
-//		return nEventId;
-//	}
-//
-//	public void setnEventId(int nEventId) {
-//		this.nEventId = nEventId;
-//	}
-//
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
 }
 
