@@ -1,7 +1,4 @@
 var app = angular.module('eventApp', ['ui.bootstrap']);
-$.fn.dataTable.ext.errMode = function ( settings, helpPage, message ) {
-    console.log(message);
-};
 app.controller('eventController', function($scope, $http,$compile,$filter) {
     $scope.dateformat = 'MM/dd/yyyy';
     $scope.eventList=[];
