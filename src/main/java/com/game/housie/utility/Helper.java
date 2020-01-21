@@ -31,6 +31,20 @@ public class Helper {
         MediUser user=(MediUser) sc.getAuthentication().getPrincipal();
         return user.getUsername();
     }
+    public static int getInt(String str,int defaultValue){
+        try{
+            return  Integer.parseInt(str);
+        }catch(NumberFormatException e){
+            return defaultValue;
+        }
+    }
+    public static int getInt(String str){
+        try{
+            return Integer.parseInt(str);
+        }catch(NumberFormatException e){
+            return 0;
+        }
+    }
 
     }
 

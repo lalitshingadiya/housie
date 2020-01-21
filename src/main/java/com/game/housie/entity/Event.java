@@ -1,6 +1,8 @@
 package com.game.housie.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -33,7 +35,8 @@ public class Event implements Serializable {
 	int noOfUsers;
 	@Column(name="status")
 	String status;
-	@Column(name="createddate")
+	@Column(name="createddate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",nullable = false,updatable = false)
+	//@CreationTimestamp
 	Date createdDate;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)

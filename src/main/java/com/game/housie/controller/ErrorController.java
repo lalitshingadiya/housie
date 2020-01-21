@@ -13,7 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@ControllerAdvice
+//@ControllerAdvice
 public class ErrorController {
 
     @ExceptionHandler(IllegalArgumentException.class)

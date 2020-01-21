@@ -1,7 +1,12 @@
 <%@ include file="nav.html" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div ng-controller="eventController" ng-app="eventApp">
-
+<style type="text/css">
+	.errormsg {
+		color: red;
+		font-size: small;
+	}
+</style>
 		<hr/>
 		<table id="tbleventlist" class="table table-striped table-bordered table-sm" cellspacing="0">
 			<thead>
@@ -40,31 +45,34 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
+					<form:form action="/housie/event/save" modelAttribute="event"  method="post">
 					<div class="modal-body">
-						<form>
 							<div class="form-group">
 								<label for="txteventname" class="col-form-label">Event Name:</label>
-								<input type="text" class="form-control" id="txteventname" ng-model="event.eventName">
+								<input type="text" class="form-control" id="txteventname" ng-model="event.eventName"/>
+								<label class="errormsg" ng-bind="errorList.name"></label>
 							</div>
 							<div class="form-group">
 								<label for="txteventdate" class="col-form-label">Event Date:</label>
 								<p class="input-group">
-									<input type="text" id="txteventdate"  class="form-control"
-										  uib-datepicker-popup="{{dateformat}}" ng-model="event.eventDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="dateformat" />
+									<input type="text" id="txteventdate"  class="form-control"  uib-datepicker-popup="{{dateformat}}" ng-model="event.eventDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="dateformat" />
 									<span class="input-group-btn">
             						<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
          							</span>
 								</p>
-
+								<label class="errormsg" ng-bind="errorList.eventDate"></label>
 
 							</div>
 							<div class="form-group">
 								<label for="txtmaximumticket" class="col-form-label">Maximum Tickets Per Employee</label>
-								<input type="text" class="form-control" id="txtmaximumticket" ng-model="event.maximumticket">
+								<input type="text" class="form-control" id="txtmaximumticket" ng-model="event.maximumticket"/>
+								<label class="errormsg" ng-bind="errorList.maximumticket"></label>
 							</div>
 							<div class="form-group">
 								<label for="txtpriceperticket" class="col-form-label">Price Per Ticket</label>
-								<input type="text" class="form-control" id="txtpriceperticket" ng-model="event.priceperticket">
+								<input type="text" class="form-control" id="txtpriceperticket" ng-model="event.priceperticket"/>
+								<label class="errormsg" ng-bind="errorList.priceperticket"></label>
+
 							</div>
 							<div class="form-group">
 								<label for="status" class="col-form-label">Status</label>
@@ -73,21 +81,22 @@
 									<option value="Not started">Not Started</option>
 									<option value="complted">Completed</option>
 								</select>
-
+								<label class="errormsg" ng-bind="errorList.Status"></label>
 							</div>
-						</form>
+
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" ng-click="saveEvent()">Save</button>
+						<button type="button" class="btn btn-primary" ng-click="saveEvent(1)">Save</button>
 					</div>
+					</form:form>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div id="tbleventlist1"></div>
 	</div>
-	<script src="${contextPath}/webjars/datatables/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="${contextPath}/webjars/datatables/1.10.19/js/jquery.dataTables.js"></script>
 	<script src="${contextPath}/webjars/datatables/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 	<script src="${contextPath}/resources/js/EventController.js"></script>
 
