@@ -14,13 +14,12 @@ import org.springframework.core.env.Environment;
 public class PropertyReader {
 
 
-    public PropertyReader(String str) {
-       this.customname=str;
-    }
-
+    @Autowired
+    Environment env;
 
     @Value("${customname}")
     private String customname;
+
 
     public String getCustomname() {
         return customname;
@@ -35,6 +34,6 @@ public class PropertyReader {
 
     public void getAllProperty(){
         System.out.println(customname);
-     //   System.out.println(env.getProperty("server.servlet.contextPath"));
+       System.out.println(env.getProperty("server.servlet.contextPath"));
     }
 }
