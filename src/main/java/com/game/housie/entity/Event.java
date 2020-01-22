@@ -1,6 +1,7 @@
 package com.game.housie.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 
@@ -19,20 +20,23 @@ public class Event implements Serializable {
 	@Column(name="eid",updatable=false,nullable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-	int eventId;
+	Long eventId;
 	@NotNull
 	@Column(name="name",unique = true)
 	String name;
 	@Column(name = "eventdate")
 	Date eventDate;
 	@Column(name="maxtickets")
-	int noOfTickets;
+	Integer noOfTickets;
 	@Column(name="priceperticket")
-	int pricePerTicket;
+	Integer pricePerTicket;
+	@ColumnDefault("0")
 	@Column(name="soldtickets")
-	int soldTickets;
+
+	Integer soldTickets;
 	@Column(name="noofusers")
-	int noOfUsers;
+	@ColumnDefault("0")
+	Integer noOfUsers;
 	@Column(name="status")
 	String status;
 	@Column(name="createddate",columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",nullable = false,updatable = false)
@@ -43,6 +47,11 @@ public class Event implements Serializable {
 	@JoinColumn(name = "createdby", nullable = false)
 	private User user;
 
+	public static Event getClone(String name){
+		Event e=new Event();
+		e.setName(name);
+		return e;
+	}
 
 }
 

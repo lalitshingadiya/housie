@@ -7,6 +7,7 @@ import com.game.housie.entity.User;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ import java.util.Date;
 
 @Data
 public class EventDTO implements Serializable {
-    int eventId;
+    Long eventId;
     @NotNull
     @Size(min=5,max = 30)
     String name;
@@ -28,10 +29,13 @@ public class EventDTO implements Serializable {
     @Future()
     Date eventDate;
 
-    int noOfTickets;
-    int pricePerTicket;
-    int soldTicket;
-    int noOfUsers;
+    Integer noOfTickets;
+    Integer pricePerTicket;
+
+    @ColumnDefault("0")
+    Integer soldTicket;
+
+    Integer noOfUsers;
     String status;
     Date createdDate;
     UserDTO user;

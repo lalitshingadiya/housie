@@ -57,6 +57,7 @@ app.controller('eventController', function($scope, $http,$compile,$filter) {
 
         }else{
             $scope.setModal('hide');
+            $('#tbleventlist').DataTable().draw();
             //$scope.loadData(1);
         }
 
@@ -115,9 +116,9 @@ app.controller('eventController', function($scope, $http,$compile,$filter) {
             ]
         });
 
-       // let elm =  angular.element(" <button type='button' class='btn btn-primary' data-toggle='modal' ng-click='setModal(\"show\")'>Add</button>")
-       // let button_Component = $compile(elm)($scope);
-        //$("#tbleventlist_filter").append(button_Component);
+        let elm =  angular.element(" <button type='button' class='btn btn-primary' data-toggle='modal' ng-click='setModal(\"show\")'>Add</button>")
+        let button_Component = $compile(elm)($scope);
+        $("#tbleventlist_filter").append(button_Component);
 
     });
     $scope.clear = function() {
