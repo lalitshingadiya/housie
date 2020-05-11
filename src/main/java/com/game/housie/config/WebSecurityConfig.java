@@ -18,10 +18,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-@Configuration()
+@Configuration
 @EnableWebSecurity
-
-    public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsServiceImpl;
@@ -65,7 +64,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**");
+        web.ignoring().antMatchers("/resources/**","/webjars/**");
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)

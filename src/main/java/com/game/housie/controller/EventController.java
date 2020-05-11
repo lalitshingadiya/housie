@@ -1,18 +1,14 @@
 package com.game.housie.controller;
 
 import com.game.housie.dto.EventDTO;
-import com.game.housie.entity.Event;
 import com.game.housie.service.EventService;
 import com.game.housie.utility.Helper;
-import netscape.javascript.JSObject;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;

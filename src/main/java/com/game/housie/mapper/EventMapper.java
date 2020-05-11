@@ -29,7 +29,9 @@ public interface EventMapper {
             @Mapping(source="pricePerTicket", target="pricePerTicket"),
             @Mapping(source="soldTicket", target="soldTickets"),
             @Mapping(source="noOfUsers", target="noOfUsers"),
-            @Mapping(source="status", target="status")
+            @Mapping(source="status", target="status"),
+            @Mapping(target="user.password",ignore = true),
+            @Mapping(target="user.passwordConfirm",ignore = true)
     })
     Event eventDTOtoEvent(EventDTO dto);
 }
