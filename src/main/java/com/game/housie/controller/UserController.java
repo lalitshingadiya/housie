@@ -42,11 +42,13 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         User u =new User();
-       // u.setRoles(rolelist);
         model.addAttribute("userForm",u);
-        model.addAttribute("roleList",roleRepository.findAll());
-
         return "registration";
+    }
+
+    @ModelAttribute(name = "roleList")
+    public List<Role> setRoleList(){
+        return  roleRepository.findAll();
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -54,7 +56,6 @@ public class UserController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("roleList",roleRepository.findAll());
             return "registration";
         }
 
@@ -91,7 +92,6 @@ public class UserController {
         if(principal instanceof UserDetails){
             String username = ((UserDetails)principal).getUsername();
         }
-        return authentication.getName(); }
-
-
+        return authentication.getName();
+    }
 }
